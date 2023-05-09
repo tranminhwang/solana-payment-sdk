@@ -7,7 +7,7 @@ describe('parseURL', () => {
         describe('when given correct params', () => {
             it('should parse successfully', () => {
                 const url =
-                    'solana:mvines9iiHiQTysrwkJjGf2gb9Ex9jXJX8ns3qwf2kN?amount=0.000000001&reference=82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny&label=Michael&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
+                    'solana:mvines9iiHiQTysrwkJjGf2gb9Ex9jXJX8ns3qwf2kN?amount=0.000000001&reference=82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny&label=Minh%20Wang&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
 
                 const { recipient, amount, splToken, reference, label, message, memo } = parseURL(
                     url
@@ -18,14 +18,14 @@ describe('parseURL', () => {
                 expect(splToken).toBeUndefined();
                 expect(reference).toHaveLength(1);
                 expect(reference![0]!.equals(new PublicKey('82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny'))).toBe(true);
-                expect(label).toBe('Michael');
+                expect(label).toBe('Minh Wang');
                 expect(message).toBe('Thanks for all the fish');
                 expect(memo).toBe('OrderId5678');
             });
 
             it('should parse with spl-token', () => {
                 const url =
-                    'solana:mvines9iiHiQTysrwkJjGf2gb9Ex9jXJX8ns3qwf2kN?amount=1.01&spl-token=82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny&label=Michael&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
+                    'solana:mvines9iiHiQTysrwkJjGf2gb9Ex9jXJX8ns3qwf2kN?amount=1.01&spl-token=82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny&label=Minh%20Wang&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
 
                 const { recipient, amount, splToken, reference, label, message, memo } = parseURL(
                     url
@@ -35,14 +35,14 @@ describe('parseURL', () => {
                 expect(amount!.eq(new BigNumber('1.01'))).toBe(true);
                 expect(splToken!.equals(new PublicKey('82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny'))).toBe(true);
                 expect(reference).toBeUndefined();
-                expect(label).toBe('Michael');
+                expect(label).toBe('Minh Wang');
                 expect(message).toBe('Thanks for all the fish');
                 expect(memo).toBe('OrderId5678');
             });
 
             it('should parse without an amount', () => {
                 const url =
-                    'solana:mvines9iiHiQTysrwkJjGf2gb9Ex9jXJX8ns3qwf2kN?reference=82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny&label=Michael&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
+                    'solana:mvines9iiHiQTysrwkJjGf2gb9Ex9jXJX8ns3qwf2kN?reference=82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny&label=Minh%20Wang&message=Thanks%20for%20all%20the%20fish&memo=OrderId5678';
 
                 const { recipient, amount, splToken, reference, label, message, memo } = parseURL(
                     url
@@ -53,7 +53,7 @@ describe('parseURL', () => {
                 expect(splToken).toBeUndefined();
                 expect(reference).toHaveLength(1);
                 expect(reference![0]!.equals(new PublicKey('82ZJ7nbGpixjeDCmEhUcmwXYfvurzAgGdtSMuHnUgyny'))).toBe(true);
-                expect(label).toBe('Michael');
+                expect(label).toBe('Minh Wang');
                 expect(message).toBe('Thanks for all the fish');
                 expect(memo).toBe('OrderId5678');
             });

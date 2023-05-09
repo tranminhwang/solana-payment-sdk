@@ -1,5 +1,5 @@
 import { Keypair } from '@solana/web3.js';
-import {parseURL, encodeURL, TransferRequestURL} from "../src";
+import { parseURL, encodeURL, TransferRequestURL } from "../src";
 
 (async () => {
     const originalReference = Keypair.generate().publicKey;

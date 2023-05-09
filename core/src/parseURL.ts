@@ -1,28 +1,12 @@
 import { PublicKey } from "@solana/web3.js";
 import BigNumber from "bignumber.js";
 import { HTTPS_PROTOCOL, SOLANA_PROTOCOL } from "./constants";
-import { Link, Amount, Recipient, Reference, SPLToken, Label, Message, Memo } from "./types";
+import { TransactionRequestURL, TransferRequestURL } from "./interfaces";
 
 export class ParseURLError extends Error {
     name = 'ParseURLError';
 }
 
-
-export interface TransactionRequestURL {
-    link: Link;
-    label?: Label;
-    message?: Message;
-}
-
-export interface TransferRequestURL {
-    recipient: Recipient,
-    amount?: Amount,
-    splToken?: SPLToken,
-    reference?: Reference[],
-    label?: Label,
-    message?: Message,
-    memo?: Memo,
-}
 
 export function parseURL(url: string | URL): TransactionRequestURL | TransferRequestURL {
     if(typeof url === 'string') {

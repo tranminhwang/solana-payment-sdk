@@ -1,23 +1,8 @@
-import { Amount, Recipient, References, SPLToken, Label, Message, Memo } from "./types";
 import { SOLANA_PROTOCOL } from "./constants";
+import { TransferRequestURL, TransactionRequestURL } from "./interfaces";
 
-
-export interface TransactionRequestURLFields {
-    link: URL,
-    label?: string,
-    message?: string,
-}
-
-export interface TransferRequestURLFields {
-    recipient: Recipient,
-    amount?: Amount,
-    splToken?: SPLToken,
-    reference?: References,
-    label?: Label,
-    message?: Message,
-    memo?: Memo,
-}
-
+type TransactionRequestURLFields = TransactionRequestURL;
+type TransferRequestURLFields = TransferRequestURL;
 
 /**
  * Encode a Solana Pay URL.

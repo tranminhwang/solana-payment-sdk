@@ -29,24 +29,23 @@ export function encodeURL(fields: TransactionRequestURLFields | TransferRequestU
 }
 
 
-function encodeTransactionRequestURL({ link, label, message }: TransactionRequestURLFields): URL {
+function encodeTransactionRequestURL({ link, ...rest }: TransactionRequestURLFields): URL {
     // Remove trailing slashes
     const pathname = link.search
         ? encodeURIComponent(String(link).replace(/\/\?/, '?'))
         : String(link).replace(/\/$/, '');
     const url = new URL(SOLANA_PROTOCOL + pathname);
 
-    if(label) {
-        url.searchParams.append('label', label);
-    }
-    if(message) {
-        url.searchParams.append('message', message);
+    for(const [key, value] of Object.entries(rest)) {
+        if(key && value) {
+            url.searchParams.append(key, value);
+        }
     }
 
     return url;
 }
 
-function encodeTransferRequestURL({recipient, amount, splToken, reference, label, message, memo}: TransferRequestURLFields): URL {
+function encodeTransferRequestURL({ recipient, amount, splToken, reference, ...rest }: TransferRequestURLFields): URL {
     const pathname = recipient.toBase58();
     const url = new URL(SOLANA_PROTOCOL + pathname);
 
@@ -64,14 +63,11 @@ function encodeTransferRequestURL({recipient, amount, splToken, reference, label
             url.searchParams.append('reference', pubkey.toBase58());
         }
     }
-    if(label) {
-        url.searchParams.append('label', label);
-    }
-    if(message) {
-        url.searchParams.append('message', message);
-    }
-    if(memo) {
-        url.searchParams.append('memo', memo);
+
+    for(const [key, value] of Object.entries(rest)) {
+        if(key && value) {
+            url.searchParams.append(key, value);
+        }
     }
 
     return url;
